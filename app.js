@@ -5,7 +5,6 @@ var rover = {
   y: 0
 }
 
-// ======================
 var grid = [
   [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
   [11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
@@ -18,14 +17,8 @@ var grid = [
   [81, 82, 83, 84, 85, 86, 87, 88, 89, 90],
   [91, 92, 93, 94, 95, 96, 97, 98, 99, 100]
 ]
-var posy = 0
-var posx = 0
-/* posx and posy are changing, but cannot access grid with
-below variables
-rover.y = grid[posy];
-rover.x = grid[posy][posx];
-*/
 
+var currentPosition = grid[rover.x][rover.y]
 
 function turnLeft(){
   switch (rover.direction) {
@@ -62,21 +55,20 @@ function turnRight(){
 }
 
 function moveForward(){
-  if (rover.direction == "South") {
-    posy += 1;
+  if (rover.direction === "South") {
+    rover.x += 1;
   }
-  else if (rover.direction == "North") {
-    posy -= 1;
+  else if (rover.direction === "North") {
+    rover.x -= 1;
   }
-  else if (rover.direction == "West") {
-    posx -= 1;
+  else if (rover.direction === "West") {
+    rover.y -= 1;
   }
-  else if (rover.direction == "East") {
-    posy += 1;
+  else if (rover.direction === "East") {
+    rover.y += 1;
   }
   console.log("moveForward was called")
 }
-
 
 
 function command (cmd) {
@@ -92,19 +84,12 @@ function command (cmd) {
     }
   }
 }
+console.log(rover.direction);
 turnRight();
 console.log(rover.direction);
 moveForward();
-console.log(posy);
+turnRight();
 moveForward();
-console.log(posy);
-console.log(rover.y)
-
-
-
-
-
-
-
-
+moveForward();
+console.log(grid[rover.x][rover.y]);
 
